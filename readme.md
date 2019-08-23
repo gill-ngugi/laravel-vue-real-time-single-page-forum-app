@@ -1,6 +1,6 @@
-#This is a real time single page forum app
+<h2>This is a real time single page forum app<h2>
 
-#The app is going to be awesome!!!
+<h4>The app is going to be awesome!!!</h4>
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
