@@ -1,4 +1,5 @@
 <?php
+// php artisan make:migration add_foreign_key_to_categories_table
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,12 +15,12 @@ class CreateRepliesTable extends Migration
     public function up()
     {
         Schema::create('replies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id', true);
             $table->text('body');
             $table->integer('user_id')->unsigned();
-            $table->integer('question_id')->unsigned();
-            //Use question_id as foreign key to delete the replies related to a deleted question
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->integer('question_id')->nullable()->index('question_id_index');
+            $table->integer('category_id')->nullable()->index('category_id_index');
+            //Use question_id as foreign key to delete the replies related to a deleted question           
             $table->timestamps();
         });
     }
