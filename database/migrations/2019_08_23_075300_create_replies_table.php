@@ -19,7 +19,6 @@ class CreateRepliesTable extends Migration
             $table->text('body');
             $table->integer('user_id')->unsigned();
             $table->integer('question_id')->nullable()->index('question_id_index');
-            $table->integer('category_id')->nullable()->index('category_id_index');
             //Use question_id as foreign key to delete the replies related to a deleted question           
             $table->timestamps();
         });
