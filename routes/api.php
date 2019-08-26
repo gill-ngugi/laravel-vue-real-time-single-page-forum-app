@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+//This returns just one api route... The GET Route.
+// Route::get('/question', 'QuestionController@index');
+
+//To return all apis in the Question Controller
+Route::apiResource('questions', 'QuestionController');
