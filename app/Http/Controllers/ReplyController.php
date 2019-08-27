@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Model\Reply;
+use App\Model\Question;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\ReplyResource;
+
 
 class ReplyController extends Controller
 {
@@ -12,9 +16,11 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
         //
+        return ReplyResource::collection($question->replies);
+        // return Reply::latest()->get();
     }
 
     /**
@@ -33,9 +39,11 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Question $question, Request $request)
     {
         //
+        $reply = $question->replies()->create($request->all());
+        return response(['reply' => new ReplyResource($reply)], Response::HTTP_CREATED);
     }
 
     /**
@@ -44,9 +52,10 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(Reply $reply)
+    public function show(Question $question, Reply $reply)
     {
         //
+        return new ReplyResource($reply);
     }
 
     /**
@@ -67,9 +76,11 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $reply)
+    public function update(Question $question, Request $request, Reply $reply)
     {
         //
+        $reply->update($request->all());
+        return response(['Reply'=>new ReplyResource($reply)]);
     }
 
     /**
@@ -78,8 +89,10 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Question $question, Reply $reply)
     {
         //
+        $reply->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
