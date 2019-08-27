@@ -21,4 +21,6 @@ use Illuminate\Http\Request;
 // Route::get('/question', 'QuestionController@index');
 
 //To return all apis in the Question Controller
-Route::apiResource('questions', 'QuestionController');
+Route::apiResource('/questions', 'QuestionController');
+
+Route::apiResource('/category', 'CategoryController');
