@@ -5,16 +5,14 @@
 
       <div class="flex-grow-1"></div>
 
-      <v-toolbar-items>
-        <v-btn text>Forum</v-btn>
-        <v-btn text>Ask Question</v-btn>
-        <v-btn text>Category</v-btn>
-        <v-btn text>Login</v-btn>
-      </v-toolbar-items>
+      <div>
+        <router-link to="/forum"><v-btn text>Forum</v-btn></router-link>
+        <router-link to="/login"><v-btn text>Ask Question</v-btn></router-link>
+        <router-link to="/login"><v-btn text>Category</v-btn></router-link>
+        <router-link to="/login"><v-btn text>Login</v-btn></router-link>
+      </div>
      
     </v-toolbar>
-
-    <h1>GILLIAN</h1>
 
   </div>
 
