@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
+   /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function index(Reply $reply)
     {
         return Like::latest()->get();
